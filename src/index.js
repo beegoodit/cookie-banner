@@ -1,18 +1,5 @@
-// import "./styles.css";
-// import "./styles.scss";
-// import { TestClass } from "./TestClass";
-// 
-// export { TestClass };
+import { CookieBanner } from "./CookieBanner";
+import { I18n } from "./I18n";
 
-//const C = () => {
-//  return new TestClass()
-//}
-//
-//export { C };
-//
-//const a = new TestClass()
-//a.foo()
-
-export function show() {
-  console.log("show");
-}
+export function cookieBanner(css_id, i18n) { return new CookieBanner(css_id, i18n) }
+export function i18n(locale, availableLocales = [], allTranslations = undefined) { return new I18n(locale, availableLocales, allTranslations) }

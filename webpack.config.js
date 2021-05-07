@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'cookie-banner.js',
-    library: "cookieBanner",
+    library: "cb",
     libraryTarget: 'umd',
     // globalObject: "typeof self !== 'undefined' ? self : this",
     globalObject: "this",
@@ -37,6 +37,11 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.ya?ml$/,
+        type: 'json', // Required by Webpack v4
+        use: 'yaml-loader'
       }
     ]
   },
@@ -62,8 +67,12 @@ module.exports = {
           <body>
             ${ htmlWebpackPlugin.tags.bodyTags }
             <h1>Hello World</h>
+            <div id="cookie-banner"></div>
             <script>
-              window.cookieBanner.show();
+              i18n = window.cb.i18n("de", ["en", "de"])
+              i18n.translate("foo")
+              cookieBanner = window.cb.cookieBanner("#cookie-banner", i18n);
+              cookieBanner.show();
             </script>
           </body>
         </html>
