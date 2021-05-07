@@ -1,6 +1,6 @@
-# empty-project
+# @beegoodit/cookie-banner
 
-Empty project.
+A EU GDPR compliant cookie banner.
 
 ## Building and running on localhost
 
@@ -25,7 +25,7 @@ npm run build-dev
 ## Running
 
 ```sh
-node dist/bundle.js
+node dist/cookie-banner.js
 ```
 
 ## Testing

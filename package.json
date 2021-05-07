@@ -1,9 +1,9 @@
 {
-  "name": "empty-project",
+  "name": "@beegoodit/cookie-banner",
   "version": "1.0.0",
-  "description": "",
+  "description": "A EU GDPR compatible cookie banner.",
   "main": "dist/cookie-banner.js",
-  "keywords": [],
+  "keywords": ["cookie", "banner", "EU GDPR"],
   "author": "BeeGood IT",
   "license": "MIT",
   "scripts": {

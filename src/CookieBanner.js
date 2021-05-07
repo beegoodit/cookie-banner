@@ -3,7 +3,6 @@ import { I18nConcern } from './I18nConcern';
 export class CookieBanner extends I18nConcern(Object) {
   constructor(container_id, i18n) {
     super()
-    console.log(container_id, i18n)
     this.container_id = container_id
     this.i18n = i18n
   }
