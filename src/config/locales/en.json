@@ -3,6 +3,24 @@
     "banner": {
       "accept_all_button_text": "Accept all",
       "accept_selected_button_text": "Accept selected",
+      "cookies": {
+        "basic": {
+          "name": "Basic",
+          "hint": "Tools that enable essential services and basic functions of this website, including identity verification, service continuity and site security. This option cannot be denied."
+        },
+        "analytics": {
+          "name": "Analytics",
+          "hint": "Tools that collect anonymous data about website usage and functionality. We use the knowledge to improve our products, services and user experience."
+        },
+        "marketing": {
+          "name": "Marketing",
+          "hint": "Anonymous information that we collect to recommend useful products and services to you."
+        },
+        "social_media": {
+          "name": "Social Media",
+          "hint": "We use social media plugins to provide you with advanced features such as sharing of content. These plugins use cookies to function properly and to measure how often this content was shared."
+        }
+      },
       "cookie_settings": {
         "allowed_cookies": {
           "name": "Name",

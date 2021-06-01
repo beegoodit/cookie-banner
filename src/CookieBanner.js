@@ -197,13 +197,13 @@ export class CookieBanner extends I18nConcern(Object) {
             <div class="row">
               <div class="col">
                 <div class="cookie_banner-cookie_settings-heading pt-2 d-flex">
-                  <h5>${ key }</h5>
+                  <h5>${ this.t(`banner.cookies.${ key }.name`) }</h5>
                   <span class="ml-auto">
                     <input class="cookie_banner-cookie_settings-accept" id="cookie_banner-cookie_settings-accept-${ key }" ${ this.cookies[key].adjustable ? null : 'disabled="disabled"' } type="checkbox" value="1" ${ this.getCurrentValue(key) ? "checked=checked" : "" } name="cookie_preferences[${ key }]" data-cookie data-cookie-name="${ key }">
                   </span>
                 </div>
                 <div class="cookie_banner-cookie_settings-hint">
-                  <p>Hint</p>
+                  <p>${ this.t(`banner.cookies.${ key }.hint`) }</p>
                 </div>
               </div>
             </div>
