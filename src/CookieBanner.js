@@ -3,7 +3,7 @@ import { I18nConcern } from './I18nConcern';
 export class CookieBanner extends I18nConcern(Object) {
   constructor(options) {
     super()
-    this.containerId = options.containerId
+    this.containerSelector = options.containerSelector
     this.i18n = options.i18n
     this.cookiePrefix = options.cookiePrefix
     this.cookies = options.cookies
@@ -90,25 +90,25 @@ export class CookieBanner extends I18nConcern(Object) {
     acceptAllButtons.forEach(button => {
       button.addEventListener('click', () => {
         this.acceptAllCookies()
-        $(`${this.containerId} .modal`).modal('hide')
+        $(`${this.containerSelector} .modal`).modal('hide')
       })
     })
 
     acceptSelectedButtons.forEach(button => {
       button.addEventListener('click', () => {
         this.acceptSelectedCookies()
-        $(`${this.containerId} .modal`).modal('hide')
+        $(`${this.containerSelector} .modal`).modal('hide')
       })
     })
   }
 
   show() {
     this.container().innerHTML = this.bannerHtml()
-    $(`${this.containerId} .modal`).modal('show')
+    $(`${this.containerSelector} .modal`).modal('show')
   }
 
   container() {
-    return document.querySelector(this.containerId)
+    return document.querySelector(this.containerSelector)
   }
 
   bannerHtml() {
