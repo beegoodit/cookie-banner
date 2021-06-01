@@ -7,6 +7,11 @@ export class CookieBanner extends I18nConcern(Object) {
     this.i18n = i18n
     this.cookiePrefix = cookiePrefix
     this.setCookies({})
+    
+    this._callbacks = {}
+    this.initializeCookieCallbacks()
+    this.initializeActionCallbacks()
+
     $(document).ready(() => {
       this.registerButtons()
     })
@@ -23,7 +28,6 @@ export class CookieBanner extends I18nConcern(Object) {
   }
 
   getCurrentValue(key) {
-    console.log(key, this.cookieIsDefined(`${this.cookiePrefix}${key}`), this.getCookie(`${this.cookiePrefix}${key}`), this.cookies[key].default)
     if (this.cookieIsDefined(`${this.cookiePrefix}${key}`)) {
       return this.getCookie(`${this.cookiePrefix}${key}`)
     } else {
@@ -61,14 +65,21 @@ export class CookieBanner extends I18nConcern(Object) {
     Object.keys(this.cookies).map(key => {
       this.setCookie(`${this.cookiePrefix}${key}`, true, 365)
     })
+
+    this._callbacks["acceptAll"].forEach(callback => {
+      callback()
+    })
   }
 
   acceptSelectedCookies() {
     const selected = document.querySelectorAll('[data-cookie]')
 
     Array.from(selected).map(item => {
-      console.log(item)
       this.setCookie(`${this.cookiePrefix}${item.dataset.cookieName}`, item.checked, 365)
+    })
+
+    this._callbacks["acceptSelected"].forEach(callback => {
+      callback()
     })
   }
 
@@ -190,7 +201,6 @@ export class CookieBanner extends I18nConcern(Object) {
   renderCookieSettings() {
     let output = ""
     Object.keys(this.cookies).map(key => {
-      console.log(this.cookies[key].adjustable);
       output = output.concat(`
         <div class="cookie_banner-cookie_settings border mb-3">
           <div class="container-fluid">
@@ -240,7 +250,6 @@ export class CookieBanner extends I18nConcern(Object) {
         </div>
       </div>
     `);
-    //console.log(output)
     return output
   }
 
@@ -303,5 +312,33 @@ export class CookieBanner extends I18nConcern(Object) {
     var seconds = (((value % 31536000) % 86400) % 3600) % 60;
 
     return { years: years, days: days, hours: hours, minutes: minutes, seconds: seconds }
+  }
+
+  initializeCookieCallbacks() {
+    Object.keys(this.cookies).map(key => {
+      this._callbacks[key] = []
+    })
+  }
+
+  initializeActionCallbacks() {
+    ["acceptAll", "acceptSelected"].map(key => {
+      this._callbacks[key] = []
+    })
+  }
+
+  cookieAccepted(name, func) {
+    this._callbacks[name].push(func)
+  }
+
+  runCookieCallbacks() {
+    Object.keys(this.cookies).map(tier => {
+      Object.keys(this._callbacks[tier]).map(key => {
+        this._callbacks[tier][key]()
+      })
+    })
+  }
+
+  on(name, func) {
+    this._callbacks[name].push(func)
   }
 }

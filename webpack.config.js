@@ -83,6 +83,40 @@ module.exports = {
             <script>
               i18n = window.cb.i18n("en", ["en", "de"])
               cookieBanner = window.cb.cookieBanner("#cookie-banner", i18n, "foo-eu_gdpr-");
+
+              cookieBanner.on("acceptAll", () => {
+                console.log("Accepted all cookies")
+              })
+
+              cookieBanner.on("acceptSelected", () => {
+                console.log("Accepted selected cookies")
+              })              
+
+              cookieBanner.cookieAccepted("basic", () => {
+                var script = document.createElement("script");
+                script.innerHTML = "console.log('basic is accepted')";
+                document.head.appendChild(script);
+              })
+
+              cookieBanner.cookieAccepted("analytics", () => {
+                var script = document.createElement("script");
+                script.innerHTML = "console.log('analytics is accepted')";
+                document.head.appendChild(script);
+              })
+
+              cookieBanner.cookieAccepted("marketing", () => {
+                var script = document.createElement("script");
+                script.innerHTML = "console.log('social_media is accepted')";
+                document.head.appendChild(script);
+              })
+              
+              cookieBanner.cookieAccepted("social_media", () => {
+                var script = document.createElement("script");
+                script.innerHTML = "console.log('social_media is accepted')";
+                document.head.appendChild(script);
+              })
+
+              cookieBanner.runCookieCallbacks()
             </script>
           </body>
         </html>

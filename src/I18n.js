@@ -10,7 +10,6 @@ export class I18n {
   }
 
   translate(key, options = {}) {
-    console.log(options)
     const translation = this.lookUp(key)
     if(translation === undefined) {
       return this.missingKeyWarning(key)
