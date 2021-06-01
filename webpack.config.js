@@ -81,8 +81,60 @@ module.exports = {
 
             <div id="cookie-banner"></div>
             <script>
-              i18n = window.cb.i18n("en", ["en", "de"])
-              cookieBanner = window.cb.cookieBanner("#cookie-banner", i18n, "foo-eu_gdpr-");
+              var cookies = {
+                "basic": {
+                  "adjustable": false,
+                  "default": true,
+                  "allowedCookies": [
+                    { name: "basic-1", domain: "example.com", expiry: "session", description: { en: "basic-1 description en", de: "basic-1 beschreibung de" }, url: "https://www.google.de" },
+                    { name: "basic-2", domain: "example.com", expiry: 1, description: { en: "basic-2 description en", de: "basic-2 beschreibung de" }},
+                    { name: "basic-3", domain: "example.com", expiry: 1 * 60 * 24, description: { en: "basic-3 description en", de: "basic-3 beschreibung de" }},
+                    { name: "basic-4", domain: "example.com", expiry: 1 * 60 * 24 * 365, description: { en: "basic-4 description en", de: "basic-4 beschreibung de" }},
+                  ]
+                },
+                "analytics": {
+                  "adjustable": true,
+                  "default": true,
+                  "allowedCookies": [
+                    { name: "analytics-1", domain: "example.com", expiry: "session", description: { en: "analytics-1 description en", de: "analytics-1 beschreibung de" }},
+                    { name: "analytics-2", domain: "example.com", expiry: "session", description: { en: "analytics-2 description en", de: "analytics-2 beschreibung de" }},
+                    { name: "analytics-3", domain: "example.com", expiry: "session", description: { en: "analytics-3 description en", de: "analytics-3 beschreibung de" }},
+                    { name: "analytics-4", domain: "example.com", expiry: "session", description: { en: "analytics-4 description en", de: "analytics-4 beschreibung de" }},
+                  ]
+                },
+                "marketing": {
+                  "adjustable": true,
+                  "default": true,
+                  "allowedCookies": [
+                    { name: "socialMedia-1", domain: "example.com", expiry: "session", description: { en: "socialMedia-1 description en", de: "socialMedia-1 beschreibung de" }},
+                    { name: "socialMedia-2", domain: "example.com", expiry: "session", description: { en: "socialMedia-2 description en", de: "socialMedia-2 beschreibung de" }},
+                    { name: "socialMedia-3", domain: "example.com", expiry: "session", description: { en: "socialMedia-3 description en", de: "socialMedia-3 beschreibung de" }},
+                    { name: "socialMedia-4", domain: "example.com", expiry: "session", description: { en: "socialMedia-4 description en", de: "socialMedia-4 beschreibung de" }},
+                  ]
+                },
+                "social_media": {
+                  "adjustable": true,
+                  "default": false,
+                  "allowedCookies": [
+                    { name: "advertising-1", domain: "example.com", expiry: "session", description: { en: "advertising-1 description en", de: "advertising-1 beschreibung de" }},
+                    { name: "advertising-2", domain: "example.com", expiry: "session", description: { en: "advertising-2 description en", de: "advertising-2 beschreibung de" }},
+                    { name: "advertising-3", domain: "example.com", expiry: "session", description: { en: "advertising-3 description en", de: "advertising-3 beschreibung de" }},
+                    { name: "advertising-4", domain: "example.com", expiry: "session", description: { en: "advertising-4 description en", de: "advertising-4 beschreibung de" }},
+                  ]
+                }
+              }
+
+              var i18n = window.cb.i18n({
+                locale: "en",
+                availableLocales: ["en", "de"]
+              })
+
+              var cookieBanner = window.cb.cookieBanner({
+                containerId: "#cookie-banner",
+                i18n: i18n,
+                cookiePrefix: "foo-eu_gdpr-",
+                cookies: cookies
+              })
 
               cookieBanner.on("acceptAll", () => {
                 console.log("Accepted all cookies")

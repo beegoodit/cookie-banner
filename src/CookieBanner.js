@@ -1,12 +1,12 @@
 import { I18nConcern } from './I18nConcern';
 
 export class CookieBanner extends I18nConcern(Object) {
-  constructor(container_id, i18n, cookiePrefix) {
+  constructor(options) {
     super()
-    this.container_id = container_id
-    this.i18n = i18n
-    this.cookiePrefix = cookiePrefix
-    this.setCookies({})
+    this.containerId = options.containerId
+    this.i18n = options.i18n
+    this.cookiePrefix = options.cookiePrefix
+    this.cookies = options.cookies
     
     this._callbacks = {}
     this.initializeCookieCallbacks()
@@ -44,7 +44,7 @@ export class CookieBanner extends I18nConcern(Object) {
 
   getCookie(name) {
     name = name + "=";
-    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+    const cDecoded = decodeURIComponent(document.cookie); // to be careful
     const cArr = cDecoded .split('; ');
     let res;
     cArr.forEach(val => {
@@ -90,71 +90,25 @@ export class CookieBanner extends I18nConcern(Object) {
     acceptAllButtons.forEach(button => {
       button.addEventListener('click', () => {
         this.acceptAllCookies()
-        $(`${this.container_id} .modal`).modal('hide')
+        $(`${this.containerId} .modal`).modal('hide')
       })
     })
 
     acceptSelectedButtons.forEach(button => {
       button.addEventListener('click', () => {
         this.acceptSelectedCookies()
-        $(`${this.container_id} .modal`).modal('hide')
+        $(`${this.containerId} .modal`).modal('hide')
       })
     })
   }
 
-  setCookies(cookies) {
-    let _cookies = {
-      "basic": {
-        "adjustable": false,
-        "default": true,
-        "allowedCookies": [
-          { name: "basic-1", domain: "example.com", expiry: "session", description: { en: "basic-1 description en", de: "basic-1 beschreibung de" }, url: "https://www.google.de" },
-          { name: "basic-2", domain: "example.com", expiry: 1, description: { en: "basic-2 description en", de: "basic-2 beschreibung de" }},
-          { name: "basic-3", domain: "example.com", expiry: 1 * 60 * 24, description: { en: "basic-3 description en", de: "basic-3 beschreibung de" }},
-          { name: "basic-4", domain: "example.com", expiry: 1 * 60 * 24 * 365, description: { en: "basic-4 description en", de: "basic-4 beschreibung de" }},
-        ]
-      },
-      "analytics": {
-        "adjustable": true,
-        "default": true,
-        "allowedCookies": [
-          { name: "analytics-1", domain: "example.com", expiry: "session", description: { en: "analytics-1 description en", de: "analytics-1 beschreibung de" }},
-          { name: "analytics-2", domain: "example.com", expiry: "session", description: { en: "analytics-2 description en", de: "analytics-2 beschreibung de" }},
-          { name: "analytics-3", domain: "example.com", expiry: "session", description: { en: "analytics-3 description en", de: "analytics-3 beschreibung de" }},
-          { name: "analytics-4", domain: "example.com", expiry: "session", description: { en: "analytics-4 description en", de: "analytics-4 beschreibung de" }},
-        ]
-      },
-      "marketing": {
-        "adjustable": true,
-        "default": true,
-        "allowedCookies": [
-          { name: "socialMedia-1", domain: "example.com", expiry: "session", description: { en: "socialMedia-1 description en", de: "socialMedia-1 beschreibung de" }},
-          { name: "socialMedia-2", domain: "example.com", expiry: "session", description: { en: "socialMedia-2 description en", de: "socialMedia-2 beschreibung de" }},
-          { name: "socialMedia-3", domain: "example.com", expiry: "session", description: { en: "socialMedia-3 description en", de: "socialMedia-3 beschreibung de" }},
-          { name: "socialMedia-4", domain: "example.com", expiry: "session", description: { en: "socialMedia-4 description en", de: "socialMedia-4 beschreibung de" }},
-        ]
-      },
-      "social_media": {
-        "adjustable": true,
-        "default": false,
-        "allowedCookies": [
-          { name: "advertising-1", domain: "example.com", expiry: "session", description: { en: "advertising-1 description en", de: "advertising-1 beschreibung de" }},
-          { name: "advertising-2", domain: "example.com", expiry: "session", description: { en: "advertising-2 description en", de: "advertising-2 beschreibung de" }},
-          { name: "advertising-3", domain: "example.com", expiry: "session", description: { en: "advertising-3 description en", de: "advertising-3 beschreibung de" }},
-          { name: "advertising-4", domain: "example.com", expiry: "session", description: { en: "advertising-4 description en", de: "advertising-4 beschreibung de" }},
-        ]
-      }
-    }
-    this.cookies = _cookies
-  }
-
   show() {
     this.container().innerHTML = this.bannerHtml()
-    $('#cookieModal').modal('show')
+    $(`${this.containerId} .modal`).modal('show')
   }
 
   container() {
-    return document.querySelector(this.container_id)
+    return document.querySelector(this.containerId)
   }
 
   bannerHtml() {

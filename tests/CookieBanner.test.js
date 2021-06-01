@@ -27,10 +27,15 @@ const page = `
 
     <div id="cookie-banner"></div>
     <script>
-      i18n = window.cb.i18n("de", ["en", "de"])
-      i18n.translate("foo")
-      cookieBanner = window.cb.cookieBanner("#cookie-banner", i18n);
-      cookieBanner.show();
+      var i18n = window.cb.i18n({
+        locale: "en",
+        availableLocales: ["en", "de"]
+      })
+
+      var cookieBanner = window.cb.cookieBanner({
+        containerId: "#cookie-banner",
+        i18n: i18n
+      })
     </script>
   </body>
 </html>
@@ -43,12 +48,9 @@ window.$ = $
 require('../node_modules/bootstrap/dist/js/bootstrap.js')
 
 test("CookieBanner", () => {
-    document.body.innerHTML = page
-    // document.body.innerHTML = `
-    //   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    //   <div id="cookie-banner"></div>
-    // `
-    const cookieBanner = new CookieBanner("#cookie-banner", new I18n("de"))
-    expect(cookieBanner.show()).toBe(undefined);
-    expect(document.body.innerHTML).toContain("modal");
-  });
+  document.body.innerHTML = page
+
+  const cookieBanner = new CookieBanner({ containerId: "#cookie-banner", i18n: new I18n("de") })
+  expect(cookieBanner.show()).toBe(undefined);
+  expect(document.body.innerHTML).toContain("modal");
+});

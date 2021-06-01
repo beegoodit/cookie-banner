@@ -1,8 +1,9 @@
 export class I18n {
-  constructor(locale, availableLocales = [], allTranslations = undefined) {
-    this._locale = locale
-    this._allTranslations = allTranslations
-    this._availableLocales = availableLocales
+  // constructor(locale, availableLocales = [], allTranslations = undefined) {
+  constructor(options = {}) {
+    this._locale = options.locale
+    this._availableLocales = options.availableLocales || []
+    this._allTranslations = options.allTranslations
   }
 
   locale() {
