@@ -5,6 +5,10 @@ export class I18n {
     this._availableLocales = availableLocales
   }
 
+  locale() {
+    return this._locale
+  }
+
   translate(key) {
     const translation = this.lookUp(key)
     if(translation === undefined) {

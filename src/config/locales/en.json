@@ -2,8 +2,20 @@
   "en": {
     "banner": {
       "accept_all_button_text": "Accept all",
-      "customize_button_text": "Change settings",
-      "body": "We have cookies that are used to operate the website and to enhance your experience on the website. Find out more in our privacy policy. With the further use of our website you belong to the use of cookies. Here you have the opportunity to improve the cookie settings.",
+      "accept_selected_button_text": "Accept selected",
+      "cookie_settings": {
+        "allowed_cookies": {
+          "name": "Name",
+          "domain": "Domain",
+          "expiry": "Expiry",
+          "description": "Description",
+          "url": "URL",
+          "more": "more"
+        },
+        "cookies": "Cookies"
+      },
+      "settings_button_text": "Change settings",
+      "body": "We use cookies that are necessary for the operation of this website and to improve your experience. Find out more in our <a href=\"\">privacy policy</a>. You agree to the use of our cookies by clicking on 'Accept all/Accept selected'. Click here to adjust the cookie preferences.",
       "title": "We use cookies"
     }
   }
