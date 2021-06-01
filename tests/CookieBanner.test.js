@@ -52,7 +52,8 @@ test("CookieBanner", () => {
 
   const cookieBanner = new CookieBanner({
     containerSelector: "[data-cookie-banner]",
-    i18n: new I18n("de")
+    i18n: new I18n("de"),
+    privacyPolicyPath: "/de/datenschutzerklaerung"
   })
 
   expect(cookieBanner.show()).toBe(undefined);

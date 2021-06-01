@@ -133,7 +133,8 @@ module.exports = {
                 containerSelector: "[data-cookie-banner]",
                 i18n: i18n,
                 cookiePrefix: "foo-eu_gdpr-",
-                cookies: cookies
+                cookies: cookies,
+                privacyPolicyPath: "/en/privacy-policy"
               })
 
               cookieBanner.on("acceptAll", () => {

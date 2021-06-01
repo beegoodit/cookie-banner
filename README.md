@@ -33,7 +33,8 @@ A EU GDPR compliant cookie banner.
   var cookieBanner = window.cb.cookieBanner({
     containerSelector: "[data-cookie-banner]",
     i18n: i18n,
-    cookiePrefix: "example-eu_gdpr-"
+    cookiePrefix: "example-eu_gdpr-",
+    privacyPolicyPath: "/en/privacy-policy"
   })
 
   cookieBanner.on("acceptAll", () => {

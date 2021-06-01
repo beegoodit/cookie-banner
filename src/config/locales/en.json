@@ -36,7 +36,7 @@
         }
       },
       "settings_button_text": "Change settings",
-      "body": "We use cookies, which are necessary for the operation of the website and to improve your experience on the website. Find out more in our <a href=\"/privacy-policy\">privacy policy</a>. By continuing to use our website, you consent to the use of cookies. Here you have the option to adjust the cookie settings.",
+      "body": "We use cookies, which are necessary for the operation of the website and to improve your experience on the website. Find out more in our <a href=\"${privacyPolicyPath}\">privacy policy</a>. By continuing to use our website, you consent to the use of cookies. Here you have the option to adjust the cookie settings.",
       "title": "We use cookies"
     },
     "datetime": {

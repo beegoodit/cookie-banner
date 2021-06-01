@@ -36,7 +36,7 @@
         }
       },
       "settings_button_text": "Einstellungen anpassen",
-      "body": "Wir verwenden Cookies, die zum Betrieb der Webseite notwending sind und um Ihr Erlebnis auf der Webseite zu verbessern. Erfahren Sie mehr in unserer <a href=\"/privacy-policy\">Datenschutzerklärung</a>. Mit der weiteren Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu. Sie haben hier die Möglichkeit die Cookie-Einstellungen anzupassen.",
+      "body": "Wir verwenden Cookies, die zum Betrieb der Webseite notwending sind und um Ihr Erlebnis auf der Webseite zu verbessern. Erfahren Sie mehr in unserer <a href=\"${privacyPolicyPath}\">Datenschutzerklärung</a>. Mit der weiteren Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu. Sie haben hier die Möglichkeit die Cookie-Einstellungen anzupassen.",
       "title": "Wir benutzen Cookies"
     },
     "datetime": {

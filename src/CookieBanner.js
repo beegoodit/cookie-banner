@@ -7,6 +7,7 @@ export class CookieBanner extends I18nConcern(Object) {
     this.i18n = options.i18n
     this.cookiePrefix = options.cookiePrefix
     this.cookies = options.cookies
+    this.privacyPolicyPath = options.privacyPolicyPath
     
     this._callbacks = {}
     this.initializeCookieCallbacks()
@@ -16,7 +17,7 @@ export class CookieBanner extends I18nConcern(Object) {
       this.registerButtons()
     })
 
-    if(!this.allCookiesPresent()) {
+    if(!this.allCookiesPresent() && (window.location.pathname != this.privacyPolicyPath)) {
       this.show()
     }
   }
@@ -124,7 +125,7 @@ export class CookieBanner extends I18nConcern(Object) {
               <div class="row">
                 <div class="col-12">
                   <div class="cookie_banner-info">
-                    <p>${this.t("banner.body")}</p>
+                    <p>${this.t("banner.body", { privacyPolicyPath: this.privacyPolicyPath })}</p>
                   </div>
                 </div>
               </div>
