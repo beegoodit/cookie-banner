@@ -9,13 +9,24 @@ export class I18n {
     return this._locale
   }
 
-  translate(key) {
+  translate(key, options = {}) {
+    console.log(options)
     const translation = this.lookUp(key)
     if(translation === undefined) {
       return this.missingKeyWarning(key)
+    } else if(typeof(translation) == "object" && "count" in options) {
+      if (options.count > 1) {
+        return this.interpolate(translation['other'], options)
+      } else {
+        return this.interpolate(translation['one'], options)
+      }
     } else {
-      return translation
+      return this.interpolate(translation, options)
     }
+  }
+
+  interpolate(templateString, templateVariables) {
+    return templateString.replace(/\${(.*?)}/g, (_, g) => templateVariables[g])
   }
 
   lookUp(key) {

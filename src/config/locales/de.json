@@ -30,11 +30,42 @@
           "url": "URL",
           "more": "Mehr"
         },
-        "cookies": "Cookies"
+        "cookies": "Cookies",
+        "expiry": {
+          "session": "Session"
+        }
       },
       "settings_button_text": "Einstellungen anpassen",
-      "body": "Wir verwenden Cookies, die zum Betrieb der Webseite notwending sind und um Ihr Erlebnis auf der Webseite zu verbessern. Erfahren Sie mehr in unserer Datenschutzbestimmung. Mit der weiteren Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu. Sie haben hier die Möglichkeit die Cookie-Einstellungen anzupassen.",
+      "body": "Wir verwenden Cookies, die zum Betrieb der Webseite notwending sind und um Ihr Erlebnis auf der Webseite zu verbessern. Erfahren Sie mehr in unserer <a href=\"/privacy-policy\">Datenschutzerklärung</a>. Mit der weiteren Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu. Sie haben hier die Möglichkeit die Cookie-Einstellungen anzupassen.",
       "title": "Wir benutzen Cookies"
+    },
+    "datetime": {
+      "distance_in_words": {
+        "x_seconds": {
+          "one": "eine Sekunde",
+          "other": "${count} Sekunden"
+        },
+        "x_minutes": {
+          "one": "eine Minute",
+          "other": "${count} Minuten"
+        },
+        "x_hours": {
+          "one": "eine Stunde",
+          "other": "${count} Stunden"
+        },
+        "x_days": {
+          "one": "ein Tag",
+          "other": "${count} Tage"
+        },
+        "x_months": {
+          "one": "ein Monat",
+          "other": "%{count} Monate"
+        },
+        "x_years": {
+          "one": "ein Jahr",
+          "other": "${count} Jahre"
+        }
+      }
     }
   }
 }

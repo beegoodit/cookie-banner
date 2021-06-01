@@ -98,9 +98,9 @@ export class CookieBanner extends I18nConcern(Object) {
         "default": true,
         "allowedCookies": [
           { name: "basic-1", domain: "example.com", expiry: "session", description: { en: "basic-1 description en", de: "basic-1 beschreibung de" }, url: "https://www.google.de" },
-          { name: "basic-2", domain: "example.com", expiry: "session", description: { en: "basic-2 description en", de: "basic-2 beschreibung de" }},
-          { name: "basic-3", domain: "example.com", expiry: "session", description: { en: "basic-3 description en", de: "basic-3 beschreibung de" }},
-          { name: "basic-4", domain: "example.com", expiry: "session", description: { en: "basic-4 description en", de: "basic-4 beschreibung de" }},
+          { name: "basic-2", domain: "example.com", expiry: 1, description: { en: "basic-2 description en", de: "basic-2 beschreibung de" }},
+          { name: "basic-3", domain: "example.com", expiry: 1 * 60 * 24, description: { en: "basic-3 description en", de: "basic-3 beschreibung de" }},
+          { name: "basic-4", domain: "example.com", expiry: 1 * 60 * 24 * 365, description: { en: "basic-4 description en", de: "basic-4 beschreibung de" }},
         ]
       },
       "analytics": {
@@ -268,7 +268,7 @@ export class CookieBanner extends I18nConcern(Object) {
             ${ allowedCookies[key].domain }
           </td>
           <td>
-            ${ allowedCookies[key].expiry }
+            ${ (typeof(allowedCookies[key].expiry) === 'string') ? this.t(`banner.cookie_settings.expiry.${allowedCookies[key].expiry}`) : this.localizeTimeObject( this.secondsToObject(allowedCookies[key].expiry * 60) ) }
           </td>
           <td>
             ${ allowedCookies[key].description[this.i18n.locale()] }
@@ -282,7 +282,26 @@ export class CookieBanner extends I18nConcern(Object) {
     output = output.concat(`
       </table></div>
     `)
-    // console.log(output)
     return output
+  }
+
+  localizeTimeObject(value) {
+    let translated = []
+    Object.keys(value).map(key => {
+      if (value[key] > 0) {
+        translated.push(this.t(`datetime.distance_in_words.x_${key}`, { "count": value[key] }))
+      }
+    })
+    return translated.join(", ")
+  }
+
+  secondsToObject(value) {
+    var years = Math.floor(value / 31536000);
+    var days = Math.floor((value % 31536000) / 86400);
+    var hours = Math.floor(((value % 31536000) % 86400) / 3600);
+    var minutes = Math.floor((((value % 31536000) % 86400) % 3600) / 60);
+    var seconds = (((value % 31536000) % 86400) % 3600) % 60;
+
+    return { years: years, days: days, hours: hours, minutes: minutes, seconds: seconds }
   }
 }
